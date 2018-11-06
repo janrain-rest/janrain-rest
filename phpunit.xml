@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         cacheTokens="true"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="false"
+         convertWarningsToExceptions="true"
+         beStrictAboutOutputDuringTests="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         verbose="true">
+    <testsuite name="Core">
+        <directory>./src/tests</directory>
+        <exclude>./src/tests/BaseCoreTest.php</exclude>
+    </testsuite>
+</phpunit>

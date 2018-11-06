@@ -1,0 +1,38 @@
+{
+    "name": "janrain/janrain",
+    "description": "Janrain REST API for social, authentication, client and settings, configuration and entity",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["janrain", "api", "rest"],
+    "authors": [
+        {
+            "name": "Gabriel Machado Santos",
+            "email": "gmachado@ciandt.com",
+            "role": "Architect"
+        },
+        {
+            "name": "Fabio Pulzi",
+            "email": "fpulzi@ciandt.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "psr/log": "^1.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.7",
+        "phpunit/phpunit": "^6.3"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Janrain\\" : "src/"
+        }
+    },
+    "scripts": {
+        "cs": "phpcs --extensions=php --ignore=./src/tests --colors ./src",
+        "cbf": "phpcbf --extensions=php --ignore=./src/tests --colors ./src",
+        "phpunit": "phpunit --debug"
+    }
+}
