@@ -1,6 +1,6 @@
 <?php
 
-namespace Janrain\tests;
+namespace JanrainRest\tests;
 
 use Psr\Log\LoggerInterface;
 

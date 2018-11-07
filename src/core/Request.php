@@ -1,6 +1,6 @@
 <?php
 
-namespace Janrain\core;
+namespace JanrainRest\core;
 
 use Psr\Log\LoggerInterface;
 use GuzzleHttp\Client;

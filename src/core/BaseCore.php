@@ -1,8 +1,8 @@
 <?php
 
-namespace Janrain\core;
+namespace JanrainRest\core;
 
-use Janrain\core\Request;
+use JanrainRest\core\Request;
 use Psr\Log\LoggerInterface;
 
 class BaseCore

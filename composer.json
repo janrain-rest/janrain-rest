@@ -1,5 +1,5 @@
 {
-    "name": "janrain/janrain",
+    "name": "janrainRest/janrainRest",
     "description": "Janrain REST API for social, authentication, client and settings, configuration and entity",
     "type": "library",
     "license": "MIT",
@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4" : {
-            "Janrain\\" : "src/"
+            "JanrainRest\\" : "src/"
         }
     },
     "scripts": {

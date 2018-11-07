@@ -1,20 +1,20 @@
 <?php
 
-namespace Janrain;
+namespace JanrainRest;
 
-use Janrain\core\Authentication;
-use Janrain\core\BaseCore;
-use Janrain\core\ClientSettings;
-use Janrain\core\Configuration;
-use Janrain\core\Engage;
-use Janrain\core\Entity;
-use Janrain\core\FormConfiguration;
-use Janrain\core\Social;
-use Janrain\core\StaticFlow;
-use Janrain\core\Translations;
+use JanrainRest\core\Authentication;
+use JanrainRest\core\BaseCore;
+use JanrainRest\core\ClientSettings;
+use JanrainRest\core\Configuration;
+use JanrainRest\core\Engage;
+use JanrainRest\core\Entity;
+use JanrainRest\core\FormConfiguration;
+use JanrainRest\core\Social;
+use JanrainRest\core\StaticFlow;
+use JanrainRest\core\Translations;
 use Psr\Log\LoggerInterface;
 
-class Janrain
+class JanrainRest
 {
     private $baseCoreInstance;
     private $authenticationInstance;
