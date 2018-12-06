@@ -141,12 +141,17 @@ class JanrainRest
             ];
             // @codingStandardsIgnoreEnd
         }
+        
+        $invalid_fields = [];
+        if (!empty($idpResponse->invalid_fields)) {
+          $invalid_fields = $idpResponse->invalid_fields;
+        }
 
         // @codingStandardsIgnoreStart
         return [
             'has_errors'        => true,
             'error_description' => $idpResponse->error_description,
-            'invalid_fields'    => (array) $idpResponse->invalid_fields,
+            'invalid_fields'    => (array) $invalid_fields,
         ];
         // @codingStandardsIgnoreEnd
     }
@@ -655,9 +660,9 @@ class JanrainRest
      *
      * @return array
      */
-    public function entityUpdate(string $uuid, string $attributes, string $typeName)
+    public function entityUpdate($uuid = FALSE, $attributes = FALSE, string $typeName, $email = FALSE, $value = FALSE, $clientId = FALSE, $clientSecret = FALSE)
     {
-        $idpResponse = $this->entityInstance->entityUpdate($uuid, $attributes, $typeName);
+        $idpResponse = $this->entityInstance->entityUpdate($uuid, $attributes, $typeName, $email, $value, $clientId, $clientSecret);
 
         if ($idpResponse->stat == 'ok') {
             return [

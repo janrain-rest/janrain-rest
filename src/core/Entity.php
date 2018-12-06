@@ -244,20 +244,41 @@ class Entity
      *
      * @return mixed
      */
-    public function entityUpdate(string $uuid, string $attributes, string $typeName)
+    public function entityUpdate($uuid = FALSE, $attributes = FALSE, string $typeName, $email = FALSE, $value = FALSE, $clientId = FALSE, $clientSecret = FALSE)
     {
         $captureServerUrl   = $this->baseCoreInstance->captureServerUrl;
         $serviceUrl         = '/entity.update';
 
         $data = [
             'type_name'  => $typeName,
-            'uuid'       => $uuid,
-            'attributes' => $attributes,
         ];
 
-        $method         = 'get';
-        $clientId       = $this->baseCoreInstance->fullClientId;
-        $clientSecret   = $this->baseCoreInstance->fullClientSecret;
+        if (!empty($attributes)) {
+          $data['attributes'] = $attributes;
+        }
+        
+        if (!empty($uuid)) {
+          $data['uuid'] = $uuid;
+        }
+        
+        if (!empty($email)) {
+          $data['key_value'] = json_encode($email);
+          $data['key_attribute'] = 'email';
+        }
+        
+        if (!empty($value)) {
+          $data['value'] = $value;
+        }
+        
+        $method = 'post';
+
+        if (empty($clientId)) {
+          $clientId = $this->baseCoreInstance->fullClientId;
+        }
+
+        if (empty($clientSecret)) {
+          $clientSecret = $this->baseCoreInstance->fullClientSecret;
+        }
 
         return $this->baseCoreInstance->requestInstance->request(
             $captureServerUrl,
