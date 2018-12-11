@@ -79,7 +79,6 @@ class Request
         if (isset($body->stat) && 'ok' !== $body->stat) {
             $errorMessage = 'Janrain\Request::request || ' .
                 'ServiceUrl: ' . $captureServerUrl . $serviceUrl . ' | ' .
-                'Data: ' . json_encode($data) . ' | ' .
                 'Method: ' . $method . ' | ' .
                 'ClientId: ' . $clientId . ' | ' .
                 'ResponseBody: ' . json_encode($body);
