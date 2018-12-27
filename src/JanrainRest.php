@@ -526,13 +526,27 @@ class JanrainRest
             ];
         }
 
-        return [
+        $invalid_fields = [];
+
+        if (!empty($idpResponse->invalid_fields)) {
+          $invalid_fields = (array) $idpResponse->invalid_fields;
+        }
+
+        if (!empty($idpResponse->message)) {
+          if (empty($invalid_fields)) {
+            $invalid_fields[$formName] = (array) $idpResponse->message;
+          }
+        }
+
+        $result = [
             'has_errors'        => true,
             'error_description' => $idpResponse->error_description,
             'code'              => $idpResponse->code,
             'error'             => $idpResponse->error,
-            'invalid_fields'    => (array) $idpResponse->invalid_fields,
+            'invalid_fields'    => (array) $invalid_fields,
         ];
+
+        return $result;
     }
 
     /**
