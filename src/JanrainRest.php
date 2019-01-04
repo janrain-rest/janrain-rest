@@ -648,9 +648,9 @@ class JanrainRest
      *
      * @return array
      */
-    public function entityFind(string $filter, string $typeName, $attributes = null)
+    public function entityFind(string $filter, string $typeName, $attributes = null, $clientId = null, $clientSecret = null)
     {
-        $idpResponse = $this->entityInstance->entityFind($filter, $typeName, $attributes);
+        $idpResponse = $this->entityInstance->entityFind($filter, $typeName, $attributes, $clientId, $clientSecret);
 
         if ($idpResponse->stat == 'ok') {
             return [

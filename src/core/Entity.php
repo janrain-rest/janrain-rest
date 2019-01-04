@@ -197,7 +197,7 @@ class Entity
      *
      * @return mixed
      */
-    public function entityFind(string $filter, string $typeName, $attributes = null)
+    public function entityFind(string $filter, string $typeName, $attributes = null, $clientId = null, $clientSecret = null)
     {
         $captureServerUrl   = $this->baseCoreInstance->captureServerUrl;
         $serviceUrl         = '/entity.find';
@@ -212,8 +212,14 @@ class Entity
         }
 
         $method         = 'get';
-        $clientId       = $this->baseCoreInstance->fullClientId;
-        $clientSecret   = $this->baseCoreInstance->fullClientSecret;
+
+        if (empty($clientId)) {
+          $clientId = $this->baseCoreInstance->fullClientId;
+        }
+
+        if (empty($clientSecret)) {
+          $clientSecret = $this->baseCoreInstance->fullClientSecret;
+        }
 
         return $this->baseCoreInstance->requestInstance->request(
             $captureServerUrl,
