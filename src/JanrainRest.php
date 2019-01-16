@@ -487,18 +487,6 @@ class JanrainRest
             ];
         }
 
-        $invalid_fields = [];
-
-        if (!empty($idpResponse->invalid_fields)) {
-          $invalid_fields = (array) $idpResponse->invalid_fields;
-        }
-
-        if (!empty($idpResponse->message)) {
-          if (empty($invalid_fields)) {
-            $invalid_fields[$formName] = (array) $idpResponse->message;
-          }
-        }
-
         return $this->returnErrors($idpResponse);
     }
 
