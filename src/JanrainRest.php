@@ -141,19 +141,8 @@ class JanrainRest
             ];
             // @codingStandardsIgnoreEnd
         }
-        
-        $invalid_fields = [];
-        if (!empty($idpResponse->invalid_fields)) {
-          $invalid_fields = $idpResponse->invalid_fields;
-        }
 
-        // @codingStandardsIgnoreStart
-        return [
-            'has_errors'        => true,
-            'error_description' => $idpResponse->error_description,
-            'invalid_fields'    => (array) $invalid_fields,
-        ];
-        // @codingStandardsIgnoreEnd
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -174,9 +163,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -199,9 +186,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -243,13 +228,7 @@ class JanrainRest
             // @codingStandardsIgnoreEnd
         }
 
-        // @codingStandardsIgnoreStart
-        return [
-            'has_errors'        => true,
-            'error_description' => $idpResponse->error_description,
-            'invalid_fields'    => (array) $idpResponse->invalid_fields,
-        ];
-        // @codingStandardsIgnoreEnd
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -364,13 +343,7 @@ class JanrainRest
             // @codingStandardsIgnoreEnd
         }
 
-        // @codingStandardsIgnoreStart
-        return [
-            'has_errors'        => true,
-            'error_description' => $idpResponse->error_description,
-            'invalid_fields'    => (array) $idpResponse->invalid_fields,
-        ];
-        // @codingStandardsIgnoreEnd
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -393,9 +366,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -416,9 +387,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -444,9 +413,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -483,13 +450,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors'        => true,
-            'error_description' => $idpResponse->error_description,
-            'code'              => $idpResponse->code,
-            'error'             => $idpResponse->error,
-            'invalid_fields'    => (array) $idpResponse->invalid_fields,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -538,15 +499,7 @@ class JanrainRest
           }
         }
 
-        $result = [
-            'has_errors'        => true,
-            'error_description' => $idpResponse->error_description,
-            'code'              => $idpResponse->code,
-            'error'             => $idpResponse->error,
-            'invalid_fields'    => (array) $invalid_fields,
-        ];
-
-        return $result;
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -583,13 +536,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors'        => true,
-            'error_description' => $idpResponse->error_description,
-            'code'              => $idpResponse->code,
-            'error'             => $idpResponse->error,
-            'invalid_fields'    => (array) $idpResponse->invalid_fields,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -611,9 +558,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -634,9 +579,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -660,9 +603,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -684,9 +625,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -705,9 +644,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -772,12 +709,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-            'error_description' => $idpResponse->error_description,
-            'code'              => $idpResponse->code,
-            'error'             => $idpResponse->error,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -799,9 +731,7 @@ class JanrainRest
             ];
         }
 
-        return [
-            'has_errors' => true,
-        ];
+        return $this->returnErrors($idpResponse);
     }
 
     /**
@@ -907,5 +837,23 @@ class JanrainRest
         }
 
         return $this->staticFlowInstance->getFlowByVersionAndLocale($flowVersion, $locale);
+    }
+
+  /**
+   * Return errors.
+   *
+   * @param object $idpResponse
+   *
+   * @return array errors.
+   */
+    private function returnErrors($idpResponse)
+    {
+        return [
+            'has_errors'        => true,
+            'error_description' => isset($idpResponse->error_description) ? $idpResponse->error_description : '',
+            'code'              => isset($idpResponse->code) ? $idpResponse->code : '',
+            'error'             => isset($idpResponse->error) ? $idpResponse->error : '',
+            'invalid_fields'    => isset($idpResponse->invalid_fields) ? (array) $idpResponse->invalid_fields : '',
+        ];
     }
 }
