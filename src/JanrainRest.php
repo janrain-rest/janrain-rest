@@ -454,6 +454,57 @@ class JanrainRest
     }
 
     /**
+     * Gerenic Custom Call.
+     *
+     * @param string $clientId The API client ID that will be used to authenticate the call.
+     * @param string $flowVersion The version number of the flow set in the flow parameter.
+     * @param string $redirectUri The same value as the redirect_uri that was passed into a previous API call.
+     * @param string $formName The name of the form in your flow that you will use for social registration.
+     * @param array  $formFields Array wuth fields filled by the user.
+     *
+     * @return mixed
+     */
+    public function gerenicCustomCall(
+        string $clientId,
+        string $flowVersion,
+        string $redirectUri,
+        string $formName,
+        array $formFields,
+        string $serviceUrl
+    ) {
+        $idpResponse = $this->authenticationInstance->genericCustomCall(
+            $clientId,
+            $this->flowName,
+            $flowVersion,
+            $this->locale,
+            $redirectUri,
+            $formName,
+            $formFields,
+            $serviceUrl
+        );
+
+        if ($idpResponse->stat == 'ok') {
+            return [
+                'has_errors' => false,
+            ];
+        }
+
+        $invalid_fields = [];
+        if (!empty($idpResponse->invalid_fields)) {
+            $invalid_fields = (array) $idpResponse->invalid_fields;
+        }
+        if (!empty($idpResponse->message)) {
+            if (empty($invalid_fields)) {
+                $invalid_fields[$formName] = (array) $idpResponse->message;
+            }
+        }
+
+        $idpResponse->invalid_fields = $invalid_fields;
+
+        return $this->returnErrors($idpResponse);
+    }
+
+    /**
      * Send verify email.
      *
      * @param string $clientId The API client ID that will be used to authenticate the call.

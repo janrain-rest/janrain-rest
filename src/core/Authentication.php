@@ -840,4 +840,55 @@ class Authentication
             $clientSecret
         );
     }
+
+    /**
+     * This endpoint is used to gerenic custom calls.
+     *
+     * @param string $clientId The API client ID that will be used to authenticate the call.
+     * @param string $flowName The name of the flow configured with the social login experience you want to use.
+     * @param string $flowVersion The version number of the flow set in the flow parameter.
+     * @param string $locale The code for the language you want to use for the social login experience.
+     * @param string $redirectUri The same value as the redirect_uri that was passed into a previous API call.
+     * @param string $formName The name of the form in your flow that you will use for social registration.
+     * @param array  $formFields Array wuth fields filled by the user.
+     *
+     * @return mixed
+     */
+    public function genericCustomCall(
+        string $clientId,
+        string $flowName,
+        string $flowVersion,
+        string $locale,
+        string $redirectUri,
+        string $formName,
+        array $formFields,
+        string $serviceUrl
+    ) {
+
+        $captureServerUrl   = $this->baseCoreInstance->captureServerUrl;
+
+        $data = [
+            'client_id'          => $clientId,
+            'flow'               => $flowName,
+            'flow_version'       => $flowVersion,
+            'locale'             => $locale,
+            'redirect_uri'       => $redirectUri,
+            'form'               => $formName,
+        ];
+
+        $data = array_merge($data, $formFields);
+
+        $method       = 'post';
+        $clientId     = $this->baseCoreInstance->loginClientId;
+        $clientSecret = $this->baseCoreInstance->loginClientSecret;
+
+        return $this->baseCoreInstance->requestInstance->request(
+            $captureServerUrl,
+            $serviceUrl,
+            $data,
+            $method,
+            $clientId,
+            $clientSecret
+        );
+    }
 }
