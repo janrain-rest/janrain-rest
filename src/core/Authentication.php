@@ -227,10 +227,13 @@ class Authentication
             'verification_code' => $verificationCode,
         ];
 
+        $method = 'post';
+
         return $this->baseCoreInstance->requestInstance->request(
             $captureServerUrl,
             $serviceUrl,
-            $data
+            $data,
+            $method
         );
     }
 
