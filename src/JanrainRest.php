@@ -595,12 +595,16 @@ class JanrainRest
      *
      * @param string $accessToken A Registration token, which will be returned after authentication or registration.
      * @param string $typeName The name of the entityType.
+     * @param string $id The id.
+     * @param string $method The method.
+     * @param string $clientId The client id.
+     * @param string $clientSecret The client secret.
      *
      * @return array
      */
-    public function entity(string $accessToken, string $typeName)
+    public function entity(string $accessToken, string $typeName, string $id, string $method, string $clientId, string $clientSecret)
     {
-        $idpResponse = $this->entityInstance->entity($accessToken, $typeName);
+        $idpResponse = $this->entityInstance->entity($accessToken, $typeName, $id, $method, $clientId, $clientSecret);
 
         if ($idpResponse->stat == 'ok') {
             return [
