@@ -66,7 +66,7 @@ class Entity
      *
      * @return mixed
      */
-    public function entity(string $accessToken, string $typeName, string $id, string $method = 'get', string $clientId = null, string $clientSecret = null)
+    public function entity(string $accessToken, string $typeName, string $id = '', string $method = 'get', string $clientId = null, string $clientSecret = null)
     {
         $captureServerUrl   = $this->baseCoreInstance->captureServerUrl;
         $serviceUrl         = '/entity';

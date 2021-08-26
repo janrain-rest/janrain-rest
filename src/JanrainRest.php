@@ -602,7 +602,7 @@ class JanrainRest
      *
      * @return array
      */
-    public function entity(string $accessToken, string $typeName, string $id, string $method = 'get', string $clientId = null, string $clientSecret = null)
+    public function entity(string $accessToken, string $typeName, string $id = '', string $method = 'get', string $clientId = null, string $clientSecret = null)
     {
         $idpResponse = $this->entityInstance->entity($accessToken, $typeName, $id, $method, $clientId, $clientSecret);
 
