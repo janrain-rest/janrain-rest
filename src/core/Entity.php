@@ -59,15 +59,20 @@ class Entity
      *
      * @param string $accessToken A Registration token, which will be returned after authentication or registration.
      * @param string $typeName The name of the entityType.
+     * @param string $id The id.
+     * @param string $method The method.
+     * @param string $clientId The client id.
+     * @param string $clientSecret The client secret.
      *
      * @return mixed
      */
-    public function entity(string $accessToken, string $typeName)
+    public function entity(string $accessToken, string $typeName, string $id = '', string $method = 'get', string $clientId = null, string $clientSecret = null)
     {
         $captureServerUrl   = $this->baseCoreInstance->captureServerUrl;
         $serviceUrl         = '/entity';
 
         $data = [
+            'id'           => $id,
             'type_name'    => $typeName,
             'access_token' => $accessToken,
         ];
@@ -75,7 +80,10 @@ class Entity
         return $this->baseCoreInstance->requestInstance->request(
             $captureServerUrl,
             $serviceUrl,
-            $data
+            $data,
+            $method,
+            $clientId,
+            $clientSecret
         );
     }
 
@@ -262,20 +270,20 @@ class Entity
         if (!empty($attributes)) {
           $data['attributes'] = $attributes;
         }
-        
+
         if (!empty($uuid)) {
           $data['uuid'] = $uuid;
         }
-        
+
         if (!empty($email)) {
           $data['key_value'] = json_encode($email);
           $data['key_attribute'] = 'email';
         }
-        
+
         if (!empty($value)) {
           $data['value'] = $value;
         }
-        
+
         $method = 'post';
 
         if (empty($clientId)) {
