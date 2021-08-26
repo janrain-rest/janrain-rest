@@ -1,10 +1,10 @@
 <?php
 
-namespace Janrain\tests;
+namespace JanrainRest\tests;
 
-use Janrain\Janrain;
-use Janrain\tests\BaseCoreTest;
-use Janrain\tests\Logger;
+use JanrainRest\JanrainRest as Janrain;
+use JanrainRest\tests\BaseCoreTest;
+use JanrainRest\tests\Logger;
 use PHPUnit\Framework\TestCase;
 
 /**
