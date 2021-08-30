@@ -376,7 +376,7 @@ class JanrainTest extends TestCase
             $this->baseTest->locale
         );
 
-        $this->assertEquals('https://fabiopulzi.rpxnow.com/facebook/start?language_preference=en-US&token_url=http%3A%2F%2Flocalhost&display=popup&applicationId=y6wckbnuxus97b3wknj4sy9kj3', $link);
+        $this->assertEquals('', $link);
     }
 
     /**

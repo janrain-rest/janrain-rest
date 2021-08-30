@@ -24,17 +24,17 @@ class BaseCoreTest extends TestCase
      * BaseCore constructor.
      */
     public function __construct() {
-        $captureServerUrl       = 'https://fabiopulzi.us-eval.janraincapture.com';
+        $captureServerUrl       = '';
         $configurationServerUrl = 'https://v1.api.us.janrain.com';
-        $fullClientId           = '93xek4d93y4qs9hjkv9r7xu9u8n3kasj';
-        $fullClientSecret       = 'scnjxpwjzv5zchem8puxh5z4g932mdju';
-        $loginClientId          = 'szms9ruu37prezmfzrvu5qzs2spwrqz5';
-        $loginClientSecret      = '2pn6v7n4jxywkvaprprrmju73k45y5xe';
+        $fullClientId           = '';
+        $fullClientSecret       = '';
+        $loginClientId          = '';
+        $loginClientSecret      = '';
         $flowName               = 'standard';
-        $flowVersion            = '20180206131504078655';
+        $flowVersion            = '';
         $locale                 = 'en-US';
         $typeName               = 'user';
-        $appId                  = 'y6wckbnuxus97b3wknj4sy9kj3';
+        $appId                  = '';
         $redirectUri            = 'http://localhost';
         $cdnUrl                 = 'https://ssl-static.janraincapture.com/widget_data/flow.js';
 
@@ -58,7 +58,7 @@ class BaseCoreTest extends TestCase
      */
     public function getRegisterMock() {
         return [
-            "emailAddress" => "gmachado@ciandt.com",
+            "emailAddress" => "gmachado@example.com",
             "displayName" => "Gabriel",
             "firstName" => "Gabriel",
             "lastName" => "Machado Santos",
@@ -72,7 +72,7 @@ class BaseCoreTest extends TestCase
      */
     public function getLoginMock() {
         return [
-            "signInEmailAddress" => "gmachado@ciandt.com",
+            "signInEmailAddress" => "gmachado@example.com",
             "currentPassword" => "Test.123",
         ];
     }
@@ -82,7 +82,7 @@ class BaseCoreTest extends TestCase
      */
     public function getVerifyEmailMock() {
         return [
-            "signInEmailAddress" => "gmachado@ciandt.com",
+            "signInEmailAddress" => "gmachado@example.com",
         ];
     }
 
@@ -91,7 +91,7 @@ class BaseCoreTest extends TestCase
      */
     public function getUpdateProfileMock() {
         return [
-            "emailAddress" => "gmachado@ciandt.com",
+            "emailAddress" => "gmachado@example.com",
             "displayName" => "John Due",
             "firstName" => "John",
             "lastName" => "Due",
