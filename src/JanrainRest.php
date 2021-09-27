@@ -424,6 +424,8 @@ class JanrainRest
      * @param string $accessToken A Registration access token.
      * @param string $formName The name of the form in your flow that you will use for social registration.
      * @param array  $formFields Array wuth fields filled by the user.
+     * @param string $flowName OPTIONAL: In case you want to use another flow name.
+     * @param string $locale OPTIONAL: In case you want to use another locale.
      *
      * @return array
      */
@@ -432,16 +434,18 @@ class JanrainRest
         string $flowVersion,
         string $formName,
         string $accessToken,
-        array $formFields
+        array $formFields,
+        string $flowName = NULL,
+        string $locale = NUll
     ) {
         $idpResponse = $this->authenticationInstance->updateProfileNative(
-            $clientId,
-            $this->flowName,
-            $flowVersion,
-            $this->locale,
-            $formName,
-            $accessToken,
-            $formFields
+          $clientId,
+          isset($flowName) ? $flowName : $this->flowName,
+          $flowVersion,
+          isset($locale) ? $locale : $this->locale,
+          $formName,
+          $accessToken,
+          $formFields
         );
 
         if ($idpResponse->stat == 'ok') {
@@ -512,6 +516,8 @@ class JanrainRest
      * @param string $redirectUri The same value as the redirect_uri that was passed into a previous API call.
      * @param string $formName The name of the form in your flow that you will use for social registration.
      * @param array  $formFields Array wuth fields filled by the user.
+     * @param string $flowName OPTIONAL: In case you want to use another flow name.
+     * @param string $locale OPTIONAL: In case you want to use another locale.
      *
      * @return array
      */
@@ -520,16 +526,18 @@ class JanrainRest
         string $flowVersion,
         string $redirectUri,
         string $formName,
-        array $formFields
+        array $formFields,
+        string $flowName = NULL,
+        string $locale = NUll
     ) {
         $idpResponse = $this->authenticationInstance->verifyEmailNative(
-            $clientId,
-            $this->flowName,
-            $flowVersion,
-            $this->locale,
-            $redirectUri,
-            $formName,
-            $formFields
+          $clientId,
+          isset($flowName) ? $flowName : $this->flowName,
+          $flowVersion,
+          isset($locale) ? $locale : $this->locale,
+          $redirectUri,
+          $formName,
+          $formFields
         );
 
         if ($idpResponse->stat == 'ok') {
@@ -561,6 +569,8 @@ class JanrainRest
      * @param string $redirectUri This parameter is required for legacy purposes.
      * @param string $formName The name of the form in your flow that you will use for social registration.
      * @param array  $formFields Array wuth fields filled by the user.
+     * @param string $flowName OPTIONAL: In case you want to use another flow name.
+     * @param string $locale OPTIONAL: In case you want to use another locale.
      *
      * @return array
      */
@@ -569,13 +579,15 @@ class JanrainRest
         string $flowVersion,
         string $redirectUri,
         string $formName,
-        array $formFields
+        array $formFields,
+        string $flowName = NULL,
+        string $locale = NUll
     ) {
         $idpResponse = $this->authenticationInstance->forgotPasswordNative(
             $clientId,
-            $this->flowName,
+            isset($flowName) ? $flowName : $this->flowName,
             $flowVersion,
-            $this->locale,
+            isset($locale) ? $locale : $this->locale,
             $redirectUri,
             $formName,
             $formFields
