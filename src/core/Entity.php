@@ -219,7 +219,7 @@ class Entity
             $data['attributes'] = json_encode($attributes);
         }
 
-        $method         = 'get';
+        $method         = 'post';
 
         if (empty($clientId)) {
           $clientId = $this->baseCoreInstance->fullClientId;
