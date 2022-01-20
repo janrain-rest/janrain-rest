@@ -175,7 +175,7 @@ class JanrainRest
      *
      * @return array
      */
-    public function getAccessToken(string $uuid, string $typeName, string $clientId)
+    public function getAccessToken(string $uuid, string $typeName, string $clientId = NULL)
     {
         $idpResponse = $this->authenticationInstance->getAccessToken($uuid, $typeName, $clientId);
 

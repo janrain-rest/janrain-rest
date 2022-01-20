@@ -41,7 +41,7 @@ class Authentication
      *
      * @return mixed
      */
-    public function getAccessToken(string $uuid, string $typeName, string $clientId)
+    public function getAccessToken(string $uuid, string $typeName, string $clientId = NULL)
     {
         $captureServerUrl   = $this->baseCoreInstance->captureServerUrl;
         $serviceUrl         = '/access/getAccessToken';
@@ -49,10 +49,13 @@ class Authentication
         $data = [
             'uuid'          => $uuid,
             'type_name'     => $typeName,
-            'for_client_id' => $clientId,
         ];
 
-        $method       = 'get';
+        if ($clientId) {
+            $data['for_client_id'] = $clientId;
+        }
+
+        $method       = 'post';
         $clientId     = $this->baseCoreInstance->fullClientId;
         $clientSecret = $this->baseCoreInstance->fullClientSecret;
 
