@@ -682,7 +682,7 @@ class JanrainRest
      *
      * @return array
      */
-    public function entityUpdate(string $uuid, string $attributes, string $typeName, $email = FALSE, $value = FALSE, $clientId = FALSE, $clientSecret = FALSE)
+    public function entityUpdate(string $uuid = '', string $attributes = '', string $typeName = '', $email = FALSE, $value = FALSE, $clientId = FALSE, $clientSecret = FALSE)
     {
         $idpResponse = $this->entityInstance->entityUpdate($uuid, $attributes, $typeName, $email, $value, $clientId, $clientSecret);
 
