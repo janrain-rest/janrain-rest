@@ -189,7 +189,7 @@ class Authentication
             'attribute_name' => $attributeName,
         ];
 
-        $method       = 'get';
+        $method       = 'post';
         $clientId     = $this->baseCoreInstance->fullClientId;
         $clientSecret = $this->baseCoreInstance->fullClientSecret;
 
