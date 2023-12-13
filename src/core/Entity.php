@@ -88,6 +88,61 @@ class Entity
     }
 
     /**
+     * Create a new entity with the provided data.
+     * This data is provided in a JSON object that specifies the path to the attribute, and the value to use.
+     *
+     * Public documentation: https://techdocs.akamai.com/identity-cloud-entity/reference/post-entity-create
+     *
+     * Service path: /entity.create
+     *
+     * Response example:
+     * {
+     *      "stat": "ok",
+     * }
+     *
+     * @param string $attributes Attribute and values to be created.
+     * @param string $typeName The name of the entityType.
+     * @param string $clientId The client id.
+     * @param string $clientSecret The client secret.
+     *
+     * @return mixed
+     */
+    public function entityCreate($attributes = FALSE, string $typeName = '', $clientId = FALSE, $clientSecret = FALSE)
+    {
+      $captureServerUrl = $this->baseCoreInstance->captureServerUrl;
+      $serviceUrl = '/entity.create';
+
+      $data = [];
+
+      if (!empty($typeName)) {
+        $data['type_name'] = $typeName;
+      }
+
+      if (!empty($attributes)) {
+        $data['attributes'] = $attributes;
+      }
+
+      $method = 'post';
+
+      if (empty($clientId)) {
+        $clientId = $this->baseCoreInstance->fullClientId;
+      }
+
+      if (empty($clientSecret)) {
+        $clientSecret = $this->baseCoreInstance->fullClientSecret;
+      }
+
+      return $this->baseCoreInstance->requestInstance->request(
+        $captureServerUrl,
+        $serviceUrl,
+        $data,
+        $method,
+        $clientId,
+        $clientSecret
+      );
+    }
+
+    /**
      * Delete a single entity (and any nested objects) from an application, or delete an element of a plural.
      *
      * Public documentation: https://docs.janrain.com/api/registration/entity/#entity-delete
@@ -272,7 +327,7 @@ class Entity
         if (!empty($attributes)) {
           $data['attributes'] = $attributes;
         }
-    
+
         if (!empty($uuid)) {
           $data['uuid'] = $uuid;
         }
