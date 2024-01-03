@@ -696,6 +696,29 @@ class JanrainRest
     }
 
     /**
+     * Creates an entity.
+     *
+     * @param string $attributes Attribute and values to be created.
+     * @param string $typeName The name of the entityType.
+     * @param string $clientId The client id.
+     * @param string $clientSecret The client secret.
+     *
+     * @return array
+     */
+    public function entityCreate(string $attributes = '', string $typeName = '', $clientId = FALSE, $clientSecret = FALSE)
+    {
+        $idpResponse = $this->entityInstance->entityCreate($attributes, $typeName, $clientId, $clientSecret);
+
+        if ($idpResponse->stat == 'ok') {
+            return [
+                'has_errors' => false,
+            ];
+        }
+
+        return $this->returnErrors($idpResponse);
+    }
+
+    /**
      * Get flow versions.
      *
      * @return array

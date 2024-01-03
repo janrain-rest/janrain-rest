@@ -258,6 +258,21 @@ class JanrainTest extends TestCase
     }
 
     /**
+     * @covers Janrain\Janrain::entityCreate
+     * @depends testRegisterNativeTraditional
+     */
+    public function testEntityCreate()
+    {
+        $typeName   = $this->baseTest->typeName;
+        // We can use the same mock entityUpdate uses.
+        $attributes = json_encode($this->baseTest->getEntityUpdateMock());
+
+        $json = $this->janrain->entityCreate($attributes, $typeName);
+
+        $this->assertNotTrue($json['has_errors']);
+    }
+
+    /**
      * @covers Janrain\Janrain::entityDeleteAccess
      * @depends testRegisterNativeTraditional
      */
